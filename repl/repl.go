@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"jaluik.com/monkey/evaluator"
 	"jaluik.com/monkey/lexer"
 	"jaluik.com/monkey/parser"
 )
@@ -30,14 +31,12 @@ func Start(in io.Reader, out io.Writer) {
 			printParserErrors(out, p.Errors())
 			continue
 		}
-		if _, err := io.WriteString(out, program.String()); err != nil {
-			fmt.Println("Error writing program output:", err)
-			return
+		evaluated := evaluator.Eval(program)
+		if evaluated != nil {
+			io.WriteString(out, evaluated.Inspect())
+			io.WriteString(out, "\n")
 		}
-		if _, err := io.WriteString(out, "\n"); err != nil {
-			fmt.Println("Error writing newline:", err)
-			return
-		}
+
 	}
 }
 
