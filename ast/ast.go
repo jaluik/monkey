@@ -311,3 +311,21 @@ func (c *CallExpression) String() string {
 }
 
 func (c *CallExpression) expressionNode() {}
+
+type StringLiteral struct {
+	Token token.Token
+	Value string
+}
+
+func (s StringLiteral) TokenLiteral() string {
+	return s.Token.Literal
+}
+
+func (s StringLiteral) String() string {
+	return s.Token.Literal
+
+}
+
+func (s StringLiteral) expressionNode() {
+
+}
