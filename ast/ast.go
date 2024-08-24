@@ -372,6 +372,7 @@ func (i *IndexExpression) String() string {
 	out.WriteString("[")
 	out.WriteString(i.Index.String())
 	out.WriteString("]")
+	out.WriteString(")")
 
 	return out.String()
 }
