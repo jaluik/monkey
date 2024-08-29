@@ -63,6 +63,43 @@ func TestModify(t *testing.T) {
 				Index: two(),
 			},
 		},
+		{
+			&IfExpression{
+				Condition: one(),
+				Consequence: &BlockStatement{
+					Statements: []Statement{
+						&ExpressionStatement{Expression: one()},
+					},
+				},
+				Alternative: &BlockStatement{
+					Statements: []Statement{
+						&ExpressionStatement{Expression: one()},
+					},
+				},
+			},
+
+			&IfExpression{
+				Condition: two(),
+				Consequence: &BlockStatement{
+					Statements: []Statement{
+						&ExpressionStatement{Expression: two()},
+					},
+				},
+				Alternative: &BlockStatement{
+					Statements: []Statement{
+						&ExpressionStatement{Expression: two()},
+					},
+				},
+			},
+		},
+		{
+			&ReturnStatement{ReturnValue: one()},
+			&ReturnStatement{ReturnValue: two()},
+		},
+		{
+			&LetStatement{Value: one()},
+			&LetStatement{Value: two()},
+		},
 	}
 
 	for _, tt := range tests {
