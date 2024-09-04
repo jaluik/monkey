@@ -129,7 +129,7 @@ macro(x,y) {x + y;};
 		{token.LBRACE, "{"},
 		{token.IDENT, "x"},
 		{token.PLUS, "+"},
-		{token.INT, "y"},
+		{token.IDENT, "y"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
 		{token.SEMICOLON, ";"},
