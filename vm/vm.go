@@ -1,6 +1,7 @@
 package vm
 
 import (
+	"fmt"
 	"jaluik.com/monkey/code"
 	"jaluik.com/monkey/compiler"
 	"jaluik.com/monkey/object"
@@ -36,9 +37,24 @@ func (vm *VM) Run() error {
 	for ip := 0; ip < len(vm.instructions); ip++ {
 		op := code.Opcode(vm.instructions[ip])
 		switch op {
-
+		case code.OpConstant:
+			constIndex := code.ReadUint16(vm.instructions[ip+1:])
+			ip += 2
+			err := vm.push(vm.constants[constIndex])
+			if err != nil {
+				return err
+			}
 		}
 
 	}
+	return nil
+}
+
+func (vm *VM) push(o object.Object) error {
+	if vm.sp >= StackSize {
+		return fmt.Errorf("stack overflow")
+	}
+	vm.stack[vm.sp] = o
+	vm.sp++
 	return nil
 }
