@@ -1,6 +1,7 @@
 package compiler
 
 import (
+	"fmt"
 	"jaluik.com/monkey/ast"
 	"jaluik.com/monkey/code"
 	"jaluik.com/monkey/object"
@@ -40,6 +41,13 @@ func (c *Compiler) Compile(node ast.Node) error {
 		if err != nil {
 			return err
 		}
+		switch node.Operator {
+		case "+":
+			c.emit(code.OpAdd)
+		default:
+			return fmt.Errorf("unknown node type %T", node)
+		}
+
 	case *ast.IntegerLiteral:
 		integer := &object.Integer{
 			Value: node.Value,

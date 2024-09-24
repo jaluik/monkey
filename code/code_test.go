@@ -27,7 +27,7 @@ func TestMake(t *testing.T) {
 
 func TestInstructionsString(t *testing.T) {
 	instructions := []Instructions{
-		Make(opAdd),
+		Make(OpAdd),
 		Make(OpConstant, 2),
 		Make(OpConstant, 65535),
 	}
